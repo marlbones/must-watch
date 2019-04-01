@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
 
 import Colors from '../../constants/Colors';
+import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
-const MoviePreview = ({ movie }) => {
+const MoviePreview = ({ movie, onAddToStore, onGetStore }) => {
   return (
     <View style={styles.wrapper}>
       <Image 
@@ -19,11 +20,19 @@ const MoviePreview = ({ movie }) => {
         <Text style={styles.subText}>
           {movie.Year}
         </Text>
-        <Icon.Ionicons
-          name = {movie.Type === 'movie' ? 'md-film' : 'md-tv'}
-          size={12}
-          color={Colors.blackText}
-        />
+          <Icon.Ionicons
+            name = {movie.Type === 'movie' ? 'md-film' : 'md-tv'}
+            size={12}
+            color={Colors.blackText}
+            onPress={() => onGetStore()}
+          />
+        <TouchableOpacity style={{paddingTop: 12}} onPress={() => onAddToStore()} >
+          <Icon.Ionicons
+            name = 'md-add-circle'
+            size={12}
+            color={Colors.blackText}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -49,7 +58,6 @@ const styles = StyleSheet.create({
   textWrapper: {
     flexDirection: 'column',
     paddingLeft: 12,
-
     // Adding this made Text wrap (https://github.com/facebook/react-native/issues/1438#issuecomment-278745825)
     width: 0,
     flexGrow: 1,
@@ -65,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MoviePreview;
+export default MoviePreviewContainer(MoviePreview);
