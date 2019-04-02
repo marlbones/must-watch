@@ -1,5 +1,5 @@
-import { AsyncStorage } from 'react-native';
-
+// import { AsyncStorage } from 'react-native';
+import { db } from '../../data/datastore';
 
 import {
   compose,
@@ -19,22 +19,15 @@ const handlers = {
     updateState({...state, loading: true});
 
     try {
-      await AsyncStorage.getAllKeys((err, result) => {
-        if (err) {
-          updateState({...state, loading: false, error: `${err}`});
+      db.find({}, (dbFindError, docs) => {
+        if (dbFindError) {
+          updateState({...state, loading: false, error: dbFindError});
         } else {
-          AsyncStorage.multiGet(result, (multiErr, multiResult) => {
-            if (multiErr) {
-              updateState({...state, loading: false, error: `${multiErr}`});
-            } else {
-              const allStoreItems = multiResult.map(result => JSON.parse(result[1]));
-              updateState({...state, loading: false, movies: allStoreItems});
-            }
-          })
+          updateState({...state, loading: false, movies: docs});
         }
       });
     } catch (error) {
-        updateState({...state, loading: false, error: `${error}`});
+      updateState({...state, loading: false, error});
     }
   }
 };
@@ -45,6 +38,7 @@ const ListScreenContainer = compose(
   lifecycle({
     componentDidMount() {
       this.props.onFetchStoredMovies();
+      console.log('componentMount')
     },
     componentDidUpdate(prevProps) {
       if (this.props.state.movies !== prevProps.state.movies) {
