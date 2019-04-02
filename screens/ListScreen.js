@@ -9,7 +9,7 @@ import ListScreenContainer from '../containers/ListScreenContainer';
 
 import Colors from '../constants/Colors';
 
-const ListScreen = ({ search, updateSearch, state, onSubmitSearch }) => (
+const ListScreen = ({ state }) => (
   <View style={styles.container}>
     <View style={styles.contentContainer}>
       <Text style={styles.headerText}>

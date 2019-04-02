@@ -1,6 +1,5 @@
 import { createStore } from 'redux';
 import { persistStore, persistCombineReducers } from 'redux-persist';
-// import reduxReset from 'redux-reset';
 import storage from 'redux-persist/es/storage';
 
 import deviceReducer from '../reducers/device';
@@ -13,9 +12,8 @@ const config = {
 
 const store = createStore(
   persistCombineReducers(config, {
-    user: deviceReducer,
+    device: deviceReducer,
   }),
-//   reduxReset()
 );
 
 // instance of persisted store
