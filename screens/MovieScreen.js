@@ -4,15 +4,15 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MoviePreview from '../components/MoviePreview';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
-import ListScreenContainer from '../containers/ListScreenContainer';
+import MovieScreenContainer from '../containers/MovieScreenContainer';
 
 import Colors from '../constants/Colors';
 
-const ListScreen = ({ state, device, onRefresh, navigation }) => (
+const MovieScreen = ({ state }) => (
   <View style={styles.container}>
     <View style={styles.contentContainer}>
       <Text style={styles.headerText}>
-        Remember to watch
+        Bart Bimpson
       </Text>
     </View>
     {(() => {
@@ -22,16 +22,7 @@ const ListScreen = ({ state, device, onRefresh, navigation }) => (
           <ErrorMessage text={state.error} containerStyle={styles.errorStyle} />
         );
       return (
-        <FlatList
-          style={styles.listContainer}
-          data={state.movies}
-          extraData={device.movies}
-          onRefresh={() => onRefresh()}
-          refreshing={state.loading}
-          keyExtractor={item => `${item.imdbID}`}
-          renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} />}
-          // ListEmptyComponent={<Text>hi</Text>}
-        />
+        <Text>{state.movie.Title}</Text>
       ); 
     })()}
   </View>
@@ -48,11 +39,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingBottom: 16,
   },
-  // image: {
-  //   height: 172,
-  //   width: 124,
-  //   // flex: 1,
-  // },
   headerText: {
     fontSize: 18,
     color: Colors.blackText,
@@ -60,10 +46,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 10,
   },
-  listContainer: {
-    flex: 1,
-    width: '100%',
-  },
 });
 
-export default ListScreenContainer(ListScreen);
+export default MovieScreenContainer(MovieScreen);

@@ -10,11 +10,14 @@ import HomeScreenContainer from '../containers/HomeScreenContainer';
 
 import Colors from '../constants/Colors';
 
-const HomeScreen = ({ search, updateSearch, state, onSubmitSearch }) => (
+const HomeScreen = ({ search, updateSearch, state, onSubmitSearch, onClearStore, device, navigation }) => (
   <View style={styles.container}>
     <View style={styles.contentContainer}>
-      <Text style={styles.headerText}>
-        Search for a movie
+      <Text style={styles.headerText} onPress={() => onClearStore()}>
+        Clear movies
+      </Text>
+      <Text style={styles.headerText} onPress={() => console.log('what in', device.movies)}>
+        Check store
       </Text>
       <View style={styles.searchBarContainer}>
         <SearchBar
@@ -44,7 +47,7 @@ const HomeScreen = ({ search, updateSearch, state, onSubmitSearch }) => (
           // onRefresh={() => onFetch()}
           refreshing={state.loading}
           keyExtractor={item => `${item.imdbID}`}
-          renderItem={({ item }) => <MoviePreview movie={item} />}
+          renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} displayAddButon />}
           // ListEmptyComponent={<Text>hi</Text>}
         />
       );

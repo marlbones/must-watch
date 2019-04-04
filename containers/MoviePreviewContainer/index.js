@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { deviceMovies } from '../../data/redux/actions/device';
+import { deviceMovies, deviceSelectedMovie } from '../../data/redux/actions/device';
 
 import {
   compose,
@@ -13,6 +13,11 @@ const handlers = {
     currentMovies.push(movie);
     dispatch(deviceMovies(currentMovies));
   },
+
+  onPress: ({ navigation, dispatch, movie }) => () => {
+    dispatch(deviceSelectedMovie(movie))
+    navigation.navigate("Movie");
+  }
 };
 
 const MoviePreviewContainer = compose(

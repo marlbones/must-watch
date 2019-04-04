@@ -6,9 +6,9 @@ import { Icon } from 'expo';
 import Colors from '../../constants/Colors';
 import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
-const MoviePreview = ({ movie, onAddToStore, onGetStore }) => {
+const MoviePreview = ({ movie, onAddToStore, displayAddButon, onPress }) => {
   return (
-    <View style={styles.wrapper}>
+    <TouchableOpacity style={styles.wrapper} onPress={() => onPress()}>
       <Image 
         source={{uri: `${movie.Poster}`}} 
         style={styles.image}
@@ -21,20 +21,22 @@ const MoviePreview = ({ movie, onAddToStore, onGetStore }) => {
           {movie.Year}
         </Text>
           <Icon.Ionicons
+            style={styles.typeIcon}
             name = {movie.Type === 'movie' ? 'md-film' : 'md-tv'}
             size={12}
             color={Colors.blackText}
-            onPress={() => onGetStore()}
           />
-        <TouchableOpacity style={{paddingTop: 12}} onPress={() => onAddToStore()} >
-          <Icon.Ionicons
-            name = 'md-add-circle'
-            size={12}
-            color={Colors.blackText}
-          />
-        </TouchableOpacity>
+        {displayAddButon && (
+          <TouchableOpacity style={styles.addIcon} onPress={() => onAddToStore()} >
+            <Icon.Ionicons
+              name = 'md-add-circle'
+              size={16}
+              color={Colors.blackText}
+            />
+          </TouchableOpacity>
+        )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -68,8 +70,16 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   subText: {
+    paddingTop: 4,
     fontSize: 12,
     color: Colors.blackText,
+  },
+  typeIcon: {
+    paddingTop: 4,
+  },
+  addIcon: {
+    paddingTop: 12,
+    // alignItems: 'flex-end',
   },
 });
 

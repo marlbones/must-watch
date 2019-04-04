@@ -4,6 +4,10 @@ import {
   withHandlers,
 } from "recompose";
 
+import { connect } from "react-redux";
+import { deviceCleared } from '../../data/redux/actions/device';
+
+
 const initialState = {
   loading: false,
   error: false,
@@ -30,10 +34,14 @@ const handlers = {
           updateState({ ...state, loading: false, error: `${error}` });
         });
     }
-  }
+  },
+  onClearStore: ({dispatch}) => () => {
+    dispatch(deviceCleared());
+  },
 };
 
 const HomeScreenContainer = compose(
+  connect(({ device }) => ({ device })),
   withState("search", "updateSearch", null),
   withState("state", "updateState", initialState),
   withHandlers(handlers),
