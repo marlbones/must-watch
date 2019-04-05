@@ -9,9 +9,14 @@ import SettingsScreen from '../screens/SettingsScreen';
 import MovieScreen from '../screens/MovieScreen';
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      title: "Search"
+    }
+  },
   Movie: {
-    screen: MovieScreen,
+    screen: () => <MovieScreen displayAddButton />,
   }
 });
 
@@ -38,7 +43,12 @@ HomeStack.navigationOptions = ({navigation}) => {
 };
 
 const ListStack = createStackNavigator({
-  List: ListScreen,
+  List: {
+    screen: ListScreen,
+    navigationOptions: {
+      title: "Must Watch List"
+    }
+  },
   Movie: {
     screen: MovieScreen,
   }

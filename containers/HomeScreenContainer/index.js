@@ -38,6 +38,10 @@ const handlers = {
   onClearStore: ({dispatch}) => () => {
     dispatch(deviceCleared());
   },
+  onClearSearch: ({state, updateState, updateSearch}) => () => {
+    updateSearch(null)
+    updateState({...state, movies: []})
+  },
 };
 
 const HomeScreenContainer = compose(

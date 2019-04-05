@@ -7,6 +7,9 @@ import {
   lifecycle,
 } from "recompose";
 
+import { deviceMovies } from '../../data/redux/actions/device';
+
+
 const initialState = ({device}) => ({
   loading: true,
   error: false,
@@ -38,10 +41,18 @@ const handlers = {
         });
     }
   },
+  onAddToList: ({device, dispatch}) => () => {
+    const currentMovies = device.movies;
+    currentMovies.push(device.selectedMovie);
+    dispatch(deviceMovies(currentMovies));
+  },
 };
 
 const ListScreenContainer = compose(
-  connect(({ device }) => ({ device })),
+  connect(({ device }) => ({ 
+    device,
+    // inWatchList: some(device.movies, {imdbID: device.selectedMovie.imdbID})
+  })),
   withState("state", "updateState", initialState),
   withHandlers(handlers),
   lifecycle({

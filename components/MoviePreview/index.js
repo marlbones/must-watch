@@ -6,9 +6,9 @@ import { Icon } from 'expo';
 import Colors from '../../constants/Colors';
 import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
-const MoviePreview = ({ movie, onAddToStore, displayAddButon, onPress }) => {
+const MoviePreview = ({ movie, onPress }) => {
   return (
-    <TouchableOpacity style={styles.wrapper} onPress={() => onPress()}>
+    <TouchableOpacity style={styles.wrapper} onPress={() => onPress()} delayPressIn={50}>
       <Image 
         source={{uri: `${movie.Poster}`}} 
         style={styles.image}
@@ -26,15 +26,6 @@ const MoviePreview = ({ movie, onAddToStore, displayAddButon, onPress }) => {
             size={12}
             color={Colors.blackText}
           />
-        {displayAddButon && (
-          <TouchableOpacity style={styles.addIcon} onPress={() => onAddToStore()} >
-            <Icon.Ionicons
-              name = 'md-add-circle'
-              size={16}
-              color={Colors.blackText}
-            />
-          </TouchableOpacity>
-        )}
       </View>
     </TouchableOpacity>
   );

@@ -10,7 +10,7 @@ import HomeScreenContainer from '../containers/HomeScreenContainer';
 
 import Colors from '../constants/Colors';
 
-const HomeScreen = ({ search, updateSearch, state, onSubmitSearch, onClearStore, device, navigation }) => (
+const HomeScreen = ({ search, updateSearch, state, onSubmitSearch, onClearStore, onClearSearch, device, navigation }) => (
   <View style={styles.container}>
     <View style={styles.contentContainer}>
       <Text style={styles.headerText} onPress={() => onClearStore()}>
@@ -30,7 +30,7 @@ const HomeScreen = ({ search, updateSearch, state, onSubmitSearch, onClearStore,
           }}
           onSubmitEditing={() => onSubmitSearch()}
           value={search}
-          onClear={() => updateSearch(null)}
+          onClear={() => onClearSearch()}
         />
       </View>
     </View>
@@ -47,7 +47,7 @@ const HomeScreen = ({ search, updateSearch, state, onSubmitSearch, onClearStore,
           // onRefresh={() => onFetch()}
           refreshing={state.loading}
           keyExtractor={item => `${item.imdbID}`}
-          renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} displayAddButon />}
+          renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} />}
           // ListEmptyComponent={<Text>hi</Text>}
         />
       );
@@ -59,6 +59,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+  },
+  errorStyle: {
+    flex: 1
   },
   contentContainer: {
     width: '100%',
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
   },
   searchBarInput: {
-    fontSize: 12,
+    fontSize: 14,
     color: Colors.blackText,
   },
   listContainer: {
