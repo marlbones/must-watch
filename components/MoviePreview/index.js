@@ -49,10 +49,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    // Good size for modal
-    // height: 260,
-    // width: 164,
-
     height: 116,
     width: 84,
     borderRadius: 2,
@@ -67,7 +63,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     color: Colors.blackText,
-    flexShrink: 1,
   },
   subText: {
     paddingTop: 4,

@@ -21,6 +21,7 @@ HomeStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
+    title: 'Search',
     tabBarVisible,
     tabBarLabel: 'Home',
     tabBarIcon: ({ focused }) => (
@@ -50,7 +51,8 @@ ListStack.navigationOptions = ({navigation}) => {
   }
   return {
     tabBarVisible,
-    tabBarLabel: 'List',
+    title: "Must Watch",
+    tabBarLabel: 'Watch',
     tabBarIcon: ({ focused }) => (
       <TabBarIcon
         focused={focused}
