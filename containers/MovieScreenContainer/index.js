@@ -7,7 +7,14 @@ import {
   lifecycle,
 } from "recompose";
 
+import {
+  API_KEY,
+  API_URL
+} from 'react-native-dotenv';
+
 import { deviceMovies } from '../../data/redux/actions/device';
+import some from 'lodash/some';
+import remove from 'lodash/remove';
 
 
 const initialState = ({device}) => ({
@@ -26,7 +33,7 @@ const handlers = {
     } else {
         // API returns imdbID with whitespace at the end. Remove it so it can be called
         let imdbID = device.selectedMovie.imdbID.replace(/ /g, '');
-        await fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=ec2df1a6`)
+        await fetch(`${API_URL}/?i=${imdbID}&apikey=${API_KEY}`)
           .then(response => response.json())
           .then(responseJson => {
             updateState({
@@ -46,12 +53,19 @@ const handlers = {
     currentMovies.push(device.selectedMovie);
     dispatch(deviceMovies(currentMovies));
   },
+  onRemoveFromList: ({device, state, dispatch, navigation}) => () => {
+    let currentMovies = device.movies;
+    remove(currentMovies, state.moviePreview);
+    dispatch(deviceMovies(currentMovies));
+    navigation.goBack(null);
+  },
 };
 
 const ListScreenContainer = compose(
   connect(({ device }) => ({ 
     device,
-    // inWatchList: some(device.movies, {imdbID: device.selectedMovie.imdbID})
+    // Check if device already has movie user is viewing saved in the watch list
+    inWatchList: some(device.movies, {imdbID: device.selectedMovie.imdbID})
   })),
   withState("state", "updateState", initialState),
   withHandlers(handlers),

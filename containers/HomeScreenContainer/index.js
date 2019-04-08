@@ -4,6 +4,11 @@ import {
   withHandlers,
 } from "recompose";
 
+import {
+  API_KEY,
+  API_URL
+} from 'react-native-dotenv';
+
 import { connect } from "react-redux";
 import { deviceCleared } from '../../data/redux/actions/device';
 
@@ -21,7 +26,7 @@ const handlers = {
     if (search === null) {
       updateState({...state, loading: false, movies: []});
     } else {
-      await fetch(`http://www.omdbapi.com/?s=${search}&apikey=ec2df1a6`)
+      await fetch(`${API_URL}/?s=${search}&apikey=${API_KEY}`)
         .then(response => response.json())
         .then(responseJson => {
           updateState({

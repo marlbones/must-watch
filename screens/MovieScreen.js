@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Icon } from 'expo';
 
@@ -12,7 +12,9 @@ import Colors from '../constants/Colors';
 const MovieScreen = ({
     state,
     displayAddButton,
-    onAddToList
+    onAddToList,
+    inWatchList,
+    onRemoveFromList,
 }) => (
   <View style={styles.container}>
     {(() => {
@@ -70,13 +72,39 @@ const MovieScreen = ({
                   </View>
                 )}
               </View>
-              {displayAddButton && (
+              {displayAddButton ? (
                 <Button 
-                  title="Add to List"
+                  title={inWatchList ? "Movie Added" : "Add to List"}
                   type="outline"
                   titleStyle={styles.buttonTextStyle}
                   buttonStyle={styles.buttonStyle}
+                  disabledStyle={styles.disabledButtonStyle}
+                  disabledTitleStyle={styles.disabledButtonText}
                   onPress={() => onAddToList()}
+                  disabled={inWatchList}
+                />
+              ) : (
+                <Button 
+                  title={"Remove from list"}
+                  type="outline"
+                  titleStyle={styles.buttonTextStyle}
+                  buttonStyle={styles.buttonStyle}
+                  onPress={() =>
+                    Alert.alert(
+                      "Are you sure?",
+                      undefined,
+                      [
+                        {
+                          text: 'Remove',
+                          style: 'cancel',
+                          onPress: () => onRemoveFromList()
+                        },
+                        {
+                          text: 'Cancel',
+                        },
+                      ]
+                    )
+                  }
                 />
               )}
             </View>
@@ -193,13 +221,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonTextStyle: {
-    color: Colors.greyText,
+    color: Colors.blackText,
     fontSize: 12,
   },
   buttonStyle: {
-    borderColor: Colors.greyText,
+    borderColor: Colors.blackText,
     borderRadius: 6,
     margin: 12,
+  },
+  disabledButtonStyle: {
+    borderColor: Colors.greyText
+  },
+  disabledButtonText: {
+    color: Colors.greyText
   },
   bottomInfo: {
     paddingTop: 16,
