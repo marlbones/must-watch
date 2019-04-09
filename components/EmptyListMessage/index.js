@@ -1,6 +1,5 @@
 import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import { Icon } from "expo";
+import { StyleSheet, Text, View } from "react-native";
 
 import Colors from "../../constants/Colors";
 

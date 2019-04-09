@@ -3,6 +3,7 @@ import {
   withState,
   withHandlers,
 } from "recompose";
+import { Animated } from 'react-native';
 
 import {
   API_KEY,
@@ -12,15 +13,29 @@ import {
 import { connect } from "react-redux";
 import { deviceCleared } from '../../data/redux/actions/device';
 
-
 const initialState = {
   loading: false,
   error: false,
   movies: [],
+  searchHeight: new Animated.Value(0),
+  searchMade: false,
+  searchOpacity: new Animated.Value(1),
 };
 
 const handlers = {
   onSubmitSearch: ({search, state, updateState}) => async () => {
+
+    Animated.parallel([
+      Animated.timing(state.searchHeight, {
+        toValue: 1,
+        duration: 500
+      }),
+      Animated.timing(state.searchOpacity, {
+        toValue: 0,
+        duration: 500
+      })
+    ]).start()
+
     updateState({ ...state, loading: true });
 
     if (search === null) {
@@ -33,6 +48,7 @@ const handlers = {
             ...state,
             loading: false,
             movies: responseJson.Search,
+            searchMade: true,
           });
         })
         .catch(error => {
@@ -44,8 +60,23 @@ const handlers = {
     dispatch(deviceCleared());
   },
   onClearSearch: ({state, updateState, updateSearch}) => () => {
-    updateSearch(null)
-    updateState({...state, movies: []})
+    Animated.parallel([
+      Animated.timing(state.searchHeight, {
+        toValue: 0,
+        duration: 500
+      }),
+      Animated.timing(state.searchOpacity, {
+        toValue: 1,
+        duration: 500
+      })
+    ]).start(() => {
+        updateSearch(null)
+        updateState({
+          ...state,
+          movies: [],
+          searchMade: false,
+        })
+    });
   },
 };
 
