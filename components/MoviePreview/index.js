@@ -2,17 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
-
 import Colors from '../../constants/Colors';
 import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
 const MoviePreview = ({ movie, onPress }) => {
   return (
     <TouchableOpacity style={styles.wrapper} onPress={() => onPress()} delayPressIn={50}>
-      <Image 
-        source={{uri: `${movie.Poster}`}} 
-        style={styles.image}
-      />
+      {
+        (movie.Poster === 'N/A') ? (
+          <View style={styles.noImage}>
+            <Text style={styles.noImageText}>n/a</Text>
+          </View>
+        ) : (
+          <Image 
+            source={{uri: `${movie.Poster}`}} 
+            style={styles.image}
+          />
+        )
+      }
       <View style={styles.textWrapper}>
         <Text style={styles.text}>
           {movie.Title}
@@ -38,6 +45,18 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  noImage: {
+    height: 116,
+    width: 84,
+    borderRadius: 2,
+    borderColor: Colors.border,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  noImageText: {
+    color: Colors.greyText,
   },
   image: {
     height: 116,

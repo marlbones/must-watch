@@ -11,7 +11,7 @@ import {
 } from 'react-native-dotenv';
 
 import { connect } from "react-redux";
-import { deviceCleared } from '../../data/redux/actions/device';
+// import { deviceCleared } from '../../data/redux/actions/device';
 
 const initialState = {
   loading: false,
@@ -56,9 +56,6 @@ const handlers = {
         });
     }
   },
-  onClearStore: ({dispatch}) => () => {
-    dispatch(deviceCleared());
-  },
   onClearSearch: ({state, updateState, updateSearch}) => () => {
     Animated.parallel([
       Animated.timing(state.searchHeight, {
@@ -78,6 +75,9 @@ const handlers = {
         })
     });
   },
+  // onClearStore: ({dispatch}) => () => {
+  //   dispatch(deviceCleared());
+  // },
 };
 
 const HomeScreenContainer = compose(

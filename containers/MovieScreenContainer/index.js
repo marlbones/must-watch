@@ -16,7 +16,6 @@ import { deviceMovies } from '../../data/redux/actions/device';
 import some from 'lodash/some';
 import remove from 'lodash/remove';
 
-
 const initialState = ({device}) => ({
   loading: true,
   error: false,
