@@ -5,7 +5,7 @@ import { Icon } from 'expo';
 import Colors from '../../constants/Colors';
 import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
-const MoviePreview = ({ movie, onPress }) => {
+const MoviePreview = ({ movie, onPress, inWatchList }) => {
   return (
     <TouchableOpacity style={styles.wrapper} onPress={() => onPress()} delayPressIn={50}>
       {
@@ -27,12 +27,25 @@ const MoviePreview = ({ movie, onPress }) => {
         <Text style={styles.subText}>
           {movie.Year}
         </Text>
+        <View style={styles.iconContainer}>
           <Icon.Ionicons
             style={styles.typeIcon}
             name = {movie.Type === 'movie' ? 'md-film' : 'md-tv'}
             size={12}
             color={Colors.blackText}
           />
+          {
+            inWatchList && (
+              <Icon.Ionicons
+                style={styles.typeIcon}
+                name = {'md-checkmark-circle'}
+                size={12}
+                color={Colors.blackText}
+              />
+            )
+          }
+        </View>
+
       </View>
     </TouchableOpacity>
   );
@@ -79,12 +92,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: Colors.blackText,
   },
+  iconContainer: {
+    flexDirection: 'row',
+  },
   typeIcon: {
     paddingTop: 4,
-  },
-  addIcon: {
-    paddingTop: 12,
-    // alignItems: 'flex-end',
+    paddingRight: 4
   },
 });
 

@@ -63,7 +63,7 @@ const handlers = {
 const ListScreenContainer = compose(
   connect(({ device }) => ({ 
     device,
-    // Check if device already has movie user is viewing saved in the watch list
+    // Check if movie is already saved in watched list
     inWatchList: some(device.movies, {imdbID: device.selectedMovie.imdbID})
   })),
   withState("state", "updateState", initialState),

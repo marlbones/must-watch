@@ -59,7 +59,7 @@ const HomeScreen = ({ search, updateSearch, state, onSubmitSearch, onClearStore,
           data={state.movies}
           refreshing={state.loading}
           keyExtractor={item => `${item.imdbID}`}
-          renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} />}
+          renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} searchScreenPreview />}
           ListEmptyComponent={
             state.searchMade && (
               <EmptyListMessage 

@@ -11,6 +11,8 @@ import {
 } from 'react-native-dotenv';
 
 import { connect } from "react-redux";
+
+import uniqBy from 'lodash/uniqBy';
 // import { deviceCleared } from '../../data/redux/actions/device';
 
 const initialState = {
@@ -23,7 +25,7 @@ const initialState = {
 };
 
 const handlers = {
-  onSubmitSearch: ({search, state, updateState}) => async () => {
+  onSubmitSearch: ({search, state, updateState}) => () => {
 
     Animated.parallel([
       Animated.timing(state.searchHeight, {
@@ -34,27 +36,29 @@ const handlers = {
         toValue: 0,
         duration: 500
       })
-    ]).start()
+    ]).start(async () => {
+      updateState({ ...state, loading: true });
 
-    updateState({ ...state, loading: true });
-
-    if (search === null) {
-      updateState({...state, loading: false, movies: []});
-    } else {
-      await fetch(`${API_URL}/?s=${search}&apikey=${API_KEY}`)
-        .then(response => response.json())
-        .then(responseJson => {
-          updateState({
-            ...state,
-            loading: false,
-            movies: responseJson.Search,
-            searchMade: true,
+      if (search === null) {
+        updateState({...state, loading: false, movies: []});
+      } else {
+        await fetch(`${API_URL}/?s=${search}&apikey=${API_KEY}`)
+          .then(response => response.json())
+          .then(responseJson => {
+            // Api returns duplicates. uniqBy function removes duplicates and returns a filteredArray
+            const filteredResults = uniqBy(responseJson.Search, item => item.imdbID);
+            updateState({
+              ...state,
+              loading: false,
+              movies: filteredResults,
+              searchMade: true,
+            });
+          })
+          .catch(error => {
+            updateState({ ...state, loading: false, error: `${error}` });
           });
-        })
-        .catch(error => {
-          updateState({ ...state, loading: false, error: `${error}` });
-        });
-    }
+      }
+    })
   },
   onClearSearch: ({state, updateState, updateSearch}) => () => {
     Animated.parallel([
