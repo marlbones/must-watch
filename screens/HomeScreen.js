@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform, FlatList, Animated } from 'react-native';
+import { StyleSheet, View, Platform, FlatList, Animated } from 'react-native';
 
 import { SearchBar } from 'react-native-elements';
 

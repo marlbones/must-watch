@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
 import Colors from '../../constants/Colors';
+import LoadingImage from '../LoadingImage';
 import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
 const MoviePreview = ({ movie, onPress, inWatchList }) => {
@@ -18,7 +19,7 @@ const MoviePreview = ({ movie, onPress, inWatchList }) => {
             <Text style={styles.noImageText}>n/a</Text>
           </View>
         ) : (
-          <Image 
+          <LoadingImage 
             source={{uri: `${movie.Poster}`}} 
             style={styles.image}
           />
