@@ -22,7 +22,7 @@ const MovieScreen = ({
         );
       return (
         <MovieFull
-          state={state}
+          movie={state.movie}
           displayAddButton={displayAddButton}
           onAddToList={() => onAddToList()}
           onRemoveFromList={() => onRemoveFromList()}

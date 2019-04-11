@@ -16,11 +16,10 @@ import { deviceMovies } from '../../data/redux/actions/device';
 import some from 'lodash/some';
 import remove from 'lodash/remove';
 
-const initialState = ({device}) => ({
+const initialState = () => ({
   loading: true,
   error: false,
   movie: null,
-  moviePreview: device.selectedMovie
 });
 
 const handlers = {
@@ -52,9 +51,9 @@ const handlers = {
     currentMovies.push(device.selectedMovie);
     dispatch(deviceMovies(currentMovies));
   },
-  onRemoveFromList: ({device, state, dispatch, navigation}) => () => {
+  onRemoveFromList: ({device, dispatch, navigation}) => () => {
     let currentMovies = device.movies;
-    remove(currentMovies, state.moviePreview);
+    remove(currentMovies, device.selectedMovie);
     dispatch(deviceMovies(currentMovies));
     navigation.goBack(null);
   },

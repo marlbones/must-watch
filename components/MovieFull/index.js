@@ -6,7 +6,7 @@ import { Icon } from 'expo';
 import Colors from '../../constants/Colors';
 
 const MovieFull = ({
-    state,
+    movie,
     displayAddButton,
     onAddToList,
     inWatchList,
@@ -18,53 +18,53 @@ const MovieFull = ({
     >
       <View style={styles.topInfo}>
         {
-          (state.movie.Poster === 'N/A') ? (
+          (movie.Poster === 'N/A') ? (
             <View style={styles.noImage}>
               <Text style={styles.noImageText}>n/a</Text>
             </View>
           ) : (
             <Image
               style={styles.image}
-              source={{uri: `${state.movie.Poster}`}}   
+              source={{uri: `${movie.Poster}`}}   
             />
           )
         }
         <View style={styles.rightTextWrapper}>
           <Text style={styles.headerText}>
-            {state.movie.Title}
+            {movie.Title}
           </Text>
           <Text style={styles.yearText}>
-            {state.movie.Year}
+            {movie.Year}
           </Text>
           <View style={styles.infoContainer}>
             <Text style={styles.infoText}>
               <Text style={styles.boldText}>Rating:</Text>
-              <Text> {state.movie.Rated}</Text>
+              <Text> {movie.Rated}</Text>
             </Text>
             <Text style={styles.infoText}>
               <Text style={styles.boldText}>Runtime:</Text>
-              <Text> {state.movie.Runtime}</Text>
+              <Text> {movie.Runtime}</Text>
             </Text>
             <Text style={styles.infoText}>
               <Text style={styles.boldText}>Released:</Text>
-              <Text> {state.movie.Released}</Text>
+              <Text> {movie.Released}</Text>
             </Text>
             <Text style={styles.infoText}>
               <Text style={styles.boldText}>Genre:</Text>
-              <Text> {state.movie.Genre}</Text>
+              <Text> {movie.Genre}</Text>
             </Text>
           </View>
           <View style={styles.ratingWrapper}>
-            {(state.movie.imdbRating !== "N/A") && (
+            {(movie.imdbRating !== "N/A") && (
               <View style={styles.iconWrapper}>
               <Icon.FontAwesome name={'imdb'} size={24} style={styles.imdbIcon}/>
-              <Text style={styles.ratingText}> {state.movie.imdbRating}</Text>
+              <Text style={styles.ratingText}> {movie.imdbRating}</Text>
               </View>
             )}
-            {(state.movie.Ratings.length > 1 && state.movie.Ratings[1].Source === "Rotten Tomatoes") && (
+            {(movie.Ratings.length > 1 && movie.Ratings[1].Source === "Rotten Tomatoes") && (
               <View style={styles.iconWrapper}>
               <Image source={require('../../assets/images/tomato.png')} style={styles.rottenTomatoesIcon}/>
-              <Text style={styles.ratingText}> {state.movie.Ratings[1].Value}</Text>
+              <Text style={styles.ratingText}> {movie.Ratings[1].Value}</Text>
               </View>
             )}
           </View>
@@ -105,23 +105,23 @@ const MovieFull = ({
         </View>
       </View>
       <View style={styles.bottomInfo}>
-        <Text style={styles.plotText}>{state.movie.Plot}</Text>
+        <Text style={styles.plotText}>{movie.Plot}</Text>
         <View style={styles.furtherInfoContainer}>
           <Text style={[styles.furtherInfoText, styles.textPadding]}>
             <Text style={styles.boldText}>Directors:</Text>
-            <Text> {state.movie.Director}</Text>
+            <Text> {movie.Director}</Text>
           </Text>
           <Text style={[styles.furtherInfoText, styles.textPadding]}>
             <Text style={styles.boldText}>Writers:</Text>
-            <Text> {state.movie.Writer}</Text>
+            <Text> {movie.Writer}</Text>
           </Text>
           <Text style={[styles.furtherInfoText, styles.textPadding]}>
             <Text style={styles.boldText}>Actors:</Text>
-            <Text> {state.movie.Actors}</Text>
+            <Text> {movie.Actors}</Text>
           </Text>
           <Text style={[styles.furtherInfoText, styles.textPadding]}>
             <Text style={styles.boldText}>Country:</Text>
-            <Text> {state.movie.Country}</Text>
+            <Text> {movie.Country}</Text>
           </Text>
         </View>
       </View>

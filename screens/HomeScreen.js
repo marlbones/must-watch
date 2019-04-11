@@ -11,7 +11,14 @@ import HomeScreenContainer from '../containers/HomeScreenContainer';
 
 import Colors from '../constants/Colors';
 
-const HomeScreen = ({ search, updateSearch, state, onSubmitSearch, onClearStore, onClearSearch, navigation }) => (
+const HomeScreen = ({
+  search,
+  updateSearch,
+  state,
+  onSubmitSearch,
+  onClearSearch,
+  navigation,
+}) => (
   <View style={styles.container}>
     <Animated.View 
       style={[

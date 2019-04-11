@@ -7,7 +7,11 @@ import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
 const MoviePreview = ({ movie, onPress, inWatchList }) => {
   return (
-    <TouchableOpacity style={styles.wrapper} onPress={() => onPress()} delayPressIn={50}>
+    <TouchableOpacity 
+      style={styles.wrapper} 
+      onPress={() => onPress()}
+      delayPressIn={50}
+    >
       {
         (movie.Poster === 'N/A') ? (
           <View style={styles.noImage}>

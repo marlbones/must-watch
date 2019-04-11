@@ -10,10 +10,7 @@ import {
   API_URL
 } from 'react-native-dotenv';
 
-import { connect } from "react-redux";
-
 import uniqBy from 'lodash/uniqBy';
-// import { deviceCleared } from '../../data/redux/actions/device';
 
 const initialState = {
   loading: false,
@@ -79,13 +76,9 @@ const handlers = {
         })
     });
   },
-  // onClearStore: ({dispatch}) => () => {
-  //   dispatch(deviceCleared());
-  // },
 };
 
 const HomeScreenContainer = compose(
-  connect(({ device }) => ({ device })),
   withState("search", "updateSearch", null),
   withState("state", "updateState", initialState),
   withHandlers(handlers),
