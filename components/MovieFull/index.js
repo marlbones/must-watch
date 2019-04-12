@@ -16,7 +16,6 @@ const MovieFull = ({
 }) => (
     <ScrollView
       contentContainerStyle={styles.contentContainer}
-      showsVerticalScrollIndicator={false}
     >
       <View style={styles.topInfo}>
         <Animated.View style={
@@ -179,7 +178,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     width: '100%',
     marginTop: 16,
-    paddingBottom: 16,
+    paddingBottom: 24,
+    paddingHorizontal: 16,
   },
   topInfo: {
     paddingBottom: 16,
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     color: Colors.greyText
   },
   bottomInfo: {
-    paddingTop: 16,
+    paddingVertical: 16,
   },
   plotText: {
     fontSize: 18,

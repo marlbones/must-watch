@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginHorizontal: 16,
   },
   errorStyle: {
     flex: 1
