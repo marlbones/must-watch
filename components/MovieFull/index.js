@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Alert, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Icon } from 'expo';
 
 import Colors from '../../constants/Colors';
+import MovieFullContainer from '../../containers/MovieFullContainer';
 
 const MovieFull = ({
     movie,
@@ -11,25 +12,55 @@ const MovieFull = ({
     onAddToList,
     inWatchList,
     onRemoveFromList,
+    componentAnimations
 }) => (
     <ScrollView
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.topInfo}>
-        {
-          (movie.Poster === 'N/A') ? (
-            <View style={styles.noImage}>
-              <Text style={styles.noImageText}>n/a</Text>
-            </View>
-          ) : (
-            <Image
-              style={styles.image}
-              source={{uri: `${movie.Poster}`}}   
-            />
-          )
-        }
-        <View style={styles.rightTextWrapper}>
+        <Animated.View style={
+          {
+            transform: [{
+              translateX: componentAnimations.interpolate({
+                inputRange: [0, 0.5, 1],
+                outputRange: [-100, -100, 0]
+              })
+            }],
+            opacity: componentAnimations.interpolate({
+              inputRange: [0, 0.5, 1],
+              outputRange: [0, 0, 1]
+            })
+          }
+        }>  
+          {
+            (movie.Poster === 'N/A') ? (
+              <View style={styles.noImage}>
+                <Text style={styles.noImageText}>n/a</Text>
+              </View>
+            ) : (
+              <Image
+                style={styles.image}
+                source={{uri: `${movie.Poster}`}}   
+              />
+            )
+          }
+        </Animated.View>
+        <Animated.View style={[
+          styles.rightTextWrapper,
+          {
+            transform: [{
+              translateX: componentAnimations.interpolate({
+                inputRange: [0, 0.5, 1],
+                outputRange: [100, 100, 0]
+              })
+            }],
+            opacity: componentAnimations.interpolate({
+              inputRange: [0, 0.5, 1],
+              outputRange: [0, 0, 1]
+            })
+          }
+        ]}>
           <Text style={styles.headerText}>
             {movie.Title}
           </Text>
@@ -102,9 +133,25 @@ const MovieFull = ({
               )}
             />
           )}
-        </View>
+        </Animated.View>
       </View>
-      <View style={styles.bottomInfo}>
+      <Animated.View 
+        style={[
+          styles.bottomInfo,
+          {
+            transform: [{
+              translateY: componentAnimations.interpolate({
+                inputRange: [0, 0.5, 1],
+                outputRange: [100, 100, 0]
+              })
+            }],
+            opacity: componentAnimations.interpolate({
+              inputRange: [0, 0.5, 1],
+              outputRange: [0, 0, 1]
+            })
+          }
+        ]}
+      >
         <Text style={styles.plotText}>{movie.Plot}</Text>
         <View style={styles.furtherInfoContainer}>
           <Text style={[styles.furtherInfoText, styles.textPadding]}>
@@ -124,7 +171,7 @@ const MovieFull = ({
             <Text> {movie.Country}</Text>
           </Text>
         </View>
-      </View>
+      </Animated.View>
     </ScrollView>
 );
 
@@ -252,4 +299,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MovieFull;
+export default MovieFullContainer(MovieFull);

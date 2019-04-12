@@ -2,6 +2,7 @@ import {
   compose,
   withState,
   withHandlers,
+  withProps,
 } from "recompose";
 import { Animated } from 'react-native';
 
@@ -16,24 +17,17 @@ const initialState = {
   loading: false,
   error: false,
   movies: [],
-  searchHeight: new Animated.Value(0),
   searchMade: false,
-  searchOpacity: new Animated.Value(1),
+  componentAnimations: new Animated.Value(0)
 };
 
 const handlers = {
-  onSubmitSearch: ({search, state, updateState}) => () => {
+  onSubmitSearch: ({search, state, updateState }) => () => {
 
-    Animated.parallel([
-      Animated.timing(state.searchHeight, {
+      Animated.timing(state.componentAnimations, {
         toValue: 1,
         duration: 500
-      }),
-      Animated.timing(state.searchOpacity, {
-        toValue: 0,
-        duration: 500
-      })
-    ]).start(async () => {
+      }).start(async () => {
       updateState({ ...state, loading: true });
 
       if (search === null) {
@@ -57,17 +51,12 @@ const handlers = {
       }
     })
   },
-  onClearSearch: ({state, updateState, updateSearch}) => () => {
-    Animated.parallel([
-      Animated.timing(state.searchHeight, {
+  onClearSearch: ({state, updateState, updateSearch }) => () => {
+
+      Animated.timing(state.componentAnimations, {
         toValue: 0,
         duration: 500
-      }),
-      Animated.timing(state.searchOpacity, {
-        toValue: 1,
-        duration: 500
-      })
-    ]).start(() => {
+      }).start(() => {
         updateSearch(null)
         updateState({
           ...state,

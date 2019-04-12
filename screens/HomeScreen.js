@@ -24,7 +24,7 @@ const HomeScreen = ({
       style={[
         styles.contentContainer, 
         {
-          height: state.searchHeight.interpolate({
+          height: state.componentAnimations.interpolate({
             inputRange: [0, 1],
             outputRange: ['75%', '15%']
           })
@@ -35,7 +35,10 @@ const HomeScreen = ({
         style={[
           styles.searchText, 
           {
-            opacity: state.searchOpacity
+            opacity: state.componentAnimations.interpolate({
+              inputRange: [0, 1],
+              outputRange: [1, 0]
+            })
           }
         ]}
       >
@@ -61,21 +64,25 @@ const HomeScreen = ({
           <ErrorMessage text={state.error} containerStyle={styles.errorStyle} />
         );
       return (
-        <FlatList
-          style={styles.listContainer}
-          data={state.movies}
-          refreshing={state.loading}
-          keyExtractor={item => `${item.imdbID}`}
-          renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} searchScreenPreview />}
-          ListEmptyComponent={
-            state.searchMade && (
-              <EmptyListMessage 
-                text={"No movies with that name"} 
-                containerStyle={styles.emptyStyle} 
-              />
-            )
-          }
-        />
+        <Animated.View style={[
+          styles.listContainer,
+          {opacity: state.componentAnimations}
+        ]}>
+          <FlatList
+            data={state.movies}
+            refreshing={state.loading}
+            keyExtractor={item => `${item.imdbID}`}
+            renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} searchScreenPreview />}
+            ListEmptyComponent={
+              state.searchMade && (
+                <EmptyListMessage 
+                  text={"No movies with that name"} 
+                  containerStyle={styles.emptyStyle} 
+                />
+              )
+            }
+          />
+        </Animated.View>
       );
     })()}
   </View>
