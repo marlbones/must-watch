@@ -12,7 +12,7 @@ const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      title: "Search"
+      // title: "Search"
     }
   },
   Movie: {
@@ -26,16 +26,15 @@ HomeStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    title: 'Search',
     tabBarVisible,
-    tabBarLabel: 'Home',
+    tabBarLabel: 'Search',
     tabBarIcon: ({ focused }) => (
       <TabBarIcon
         focused={focused}
         name={
           Platform.OS === 'ios'
-            ? `ios-information-circle${focused ? '' : '-outline'}`
-            : 'md-information-circle'
+            ? 'ios-search'
+            : 'md-search'
         }
       />
     ),
