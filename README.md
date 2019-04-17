@@ -2,7 +2,7 @@
 
 ## Description
 
-Simple app for creating a visual list of movies you want/simple must watch. Search a movie then add it to your list.
+Simple app for creating a visual list of movies you want to/must watch. Search a movie then add it to your list.
 
 Must-Watch is a work in progress. Features/fixes to come.
 
@@ -34,7 +34,8 @@ Must-Watch is a work in progress. Features/fixes to come.
 - General styling update.
 - Add Icons, splash screen.
 - Think about how to make it that you can view your saved list offline. Logic that saves full screen data into state/watch list?
-- General code and file structure cleanup
+- General code and file structure cleanup.
+- Update readme.
 
 ## Known Bugs to Squash
 
