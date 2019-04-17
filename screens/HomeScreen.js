@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Platform, FlatList, Animated } from 'react-native';
+import { StyleSheet, View, Platform, FlatList, Text, Animated } from 'react-native';
 
 import { SearchBar } from 'react-native-elements';
 
@@ -26,24 +26,27 @@ const HomeScreen = ({
         {
           height: state.componentAnimations.interpolate({
             inputRange: [0, 1],
-            outputRange: ['75%', '15%']
+            outputRange: ['75%', '10%']
           })
         }
       ]}
     >
-      <Animated.Text 
-        style={[
-          styles.searchText, 
-          {
-            opacity: state.componentAnimations.interpolate({
-              inputRange: [0, 1],
-              outputRange: [1, 0]
-            })
-          }
-        ]}
+      <Animated.View
+        style={{
+          opacity: state.componentAnimations.interpolate({
+            inputRange: [0, 1],
+            outputRange: [1, 0]
+          })
+        }}
       >
-        Search for a movie
-      </Animated.Text>
+        <Text style={styles.searchText}>
+          Search for a movie.
+        </Text>
+        <Text style={styles.searchTextSub}>
+          Add it to your list.
+        </Text>
+      </Animated.View>
+
       <SearchBar
         containerStyle={styles.searchBarContainer}
         inputContainerStyle={styles.searchBarInputContainer}
@@ -100,11 +103,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     marginHorizontal: 4,
-    paddingBottom: 16,
+    marginBottom: 32,
   },
   searchText: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.blackText,
+    paddingBottom: 4,
+  },
+  searchTextSub: {
+    textAlign: 'center',
+    fontSize: 14,
     color: Colors.blackText,
     paddingBottom: 8,
   },

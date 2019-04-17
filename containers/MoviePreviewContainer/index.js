@@ -20,8 +20,8 @@ const handlers = {
 const MoviePreviewContainer = compose(
   connect(({ device }) => ({ device })),
   withProps(({ movie, device, searchScreenPreview }) => ({
-    // Check if movie is on HomeScreen/search screen and is already saved in watch list
-    inWatchList: searchScreenPreview && some(device.movies, {imdbID: movie.imdbID})
+    // Check if movie is already saved in watch list
+    inWatchList: some(device.movies, {imdbID: movie.imdbID})
   })),
   withHandlers(handlers),
 );

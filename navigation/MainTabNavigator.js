@@ -5,14 +5,13 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import ListScreen from '../screens/ListScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import MovieScreen from '../screens/MovieScreen';
+import AboutScreen from '../screens/AboutScreen';
 
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      // title: "Search"
     }
   },
   Movie: {
@@ -45,7 +44,7 @@ const ListStack = createStackNavigator({
   List: {
     screen: ListScreen,
     navigationOptions: {
-      title: "Must Watch List"
+      title: "Must-Watch List"
     }
   },
   Movie: {
@@ -61,7 +60,7 @@ ListStack.navigationOptions = ({navigation}) => {
   return {
     tabBarVisible,
     title: "Must Watch",
-    tabBarLabel: 'Watch',
+    tabBarLabel: 'Watch List',
     tabBarIcon: ({ focused }) => (
       <TabBarIcon
         focused={focused}
@@ -71,16 +70,21 @@ ListStack.navigationOptions = ({navigation}) => {
   }
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const AboutStack = createStackNavigator({
+  About: {
+    screen: AboutScreen,
+    navigationOptions: {
+      title: "About"
+    }
+  },
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+AboutStack.navigationOptions = {
+  tabBarLabel: 'About',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
     />
   ),
 };
@@ -88,5 +92,5 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator({
   HomeStack,
   ListStack,
-  SettingsStack,
+  AboutStack,
 });

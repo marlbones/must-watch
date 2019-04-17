@@ -14,5 +14,4 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   border: '#EEEEEE',
-  white: "#F8F8FF"
 };

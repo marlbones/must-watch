@@ -2,62 +2,71 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+
 import Colors from '../../constants/Colors';
 import LoadingImage from '../LoadingImage';
+import SwipeableRow from '../SwipeableRow';
 import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
-const MoviePreview = ({ movie, onPress, inWatchList }) => {
+const MoviePreview = ({ movie, onPress, inWatchList, searchScreenPreview }) => {
   return (
-    <TouchableOpacity 
-      style={styles.wrapper} 
-      onPress={() => onPress()}
-      delayPressIn={50}
+    <SwipeableRow 
+      canSwipe={(searchScreenPreview && !inWatchList)}
+      movie={movie}
     >
-      {
-        (movie.Poster === 'N/A') ? (
-          <View style={styles.noImage}>
-            <Text style={styles.noImageText}>n/a</Text>
+      <TouchableOpacity 
+        style={styles.wrapper} 
+        onPress={() => onPress()}
+        delayPressIn={50}
+      >
+        {
+          (movie.Poster === 'N/A') ? (
+            <View style={styles.noImage}>
+              <Text style={styles.noImageText}>n/a</Text>
+            </View>
+          ) : (
+            <LoadingImage 
+              source={{uri: `${movie.Poster}`}} 
+              style={styles.image}
+            />
+          )
+        }
+        <View style={styles.textWrapper}>
+          <Text style={styles.text}>
+            {movie.Title}
+          </Text>
+          <Text style={styles.subText}>
+            {movie.Year}
+          </Text>
+          <View style={styles.iconContainer}>
+            <Icon.Ionicons
+              style={styles.typeIcon}
+              name = {movie.Type === 'movie' ? 'md-film' : 'md-tv'}
+              size={16}
+              color={Colors.greyText}
+            />
+            {
+              (searchScreenPreview && inWatchList) && (
+                <Icon.Ionicons
+                  style={styles.typeIcon}
+                  name = {'md-checkmark-circle'}
+                  size={16}
+                  color={Colors.greyText}
+                />
+              )
+            }
           </View>
-        ) : (
-          <LoadingImage 
-            source={{uri: `${movie.Poster}`}} 
-            style={styles.image}
-          />
-        )
-      }
-      <View style={styles.textWrapper}>
-        <Text style={styles.text}>
-          {movie.Title}
-        </Text>
-        <Text style={styles.subText}>
-          {movie.Year}
-        </Text>
-        <View style={styles.iconContainer}>
-          <Icon.Ionicons
-            style={styles.typeIcon}
-            name = {movie.Type === 'movie' ? 'md-film' : 'md-tv'}
-            size={12}
-            color={Colors.blackText}
-          />
-          {
-            inWatchList && (
-              <Icon.Ionicons
-                style={styles.typeIcon}
-                name = {'md-checkmark-circle'}
-                size={12}
-                color={Colors.blackText}
-              />
-            )
-          }
-        </View>
 
-      </View>
-    </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    </SwipeableRow>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
+    flex: 1,
     padding: 24,
     borderBottomColor: Colors.border,
     borderBottomWidth: 1,
@@ -94,15 +103,15 @@ const styles = StyleSheet.create({
   },
   subText: {
     paddingTop: 4,
-    fontSize: 12,
-    color: Colors.blackText,
+    fontSize: 14,
+    color: Colors.greyText,
   },
   iconContainer: {
     flexDirection: 'row',
   },
   typeIcon: {
     paddingTop: 4,
-    paddingRight: 4
+    paddingRight: 6
   },
 });
 

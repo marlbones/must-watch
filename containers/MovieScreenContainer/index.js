@@ -59,7 +59,7 @@ const handlers = {
   },
 };
 
-const ListScreenContainer = compose(
+const MovieScreenContainer = compose(
   connect(({ device }) => ({ 
     device,
     // Check if movie is already saved in watched list
@@ -74,4 +74,4 @@ const ListScreenContainer = compose(
   })
 );
 
-export default ListScreenContainer;
+export default MovieScreenContainer;
