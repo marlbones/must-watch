@@ -10,7 +10,7 @@
 
 Simple app for creating a visual list of movies you want to/must watch. Search a movie then add it to your list.
 
-Using ([omdb api](https://itunes.apple.com/app/apple-store/id982107779).
+Using [omdb api](https://itunes.apple.com/app/apple-store/id982107779).
 
 Must-Watch is a work in progress. Features/fixes to come.
 
