@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Alert, Animated } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Icon } from 'expo';
 
@@ -94,7 +94,7 @@ const MovieFull = ({
             )}
             {(movie.Ratings.length > 1 && movie.Ratings[1].Source === "Rotten Tomatoes") && (
               <View style={styles.iconWrapper}>
-              <Image source={require('../../assets/images/tomato.png')} style={styles.rottenTomatoesIcon}/>
+              <LoadingImage source={require('../../assets/images/tomato.png')} style={styles.rottenTomatoesIcon}/>
               <Text style={styles.ratingText}> {movie.Ratings[1].Value}</Text>
               </View>
             )}

@@ -68,7 +68,13 @@ const HomeScreen = ({
       );
       if (state.error)
         return (
-          <ErrorMessage text={state.error} containerStyle={styles.errorStyle} />
+          <ErrorMessage 
+            text={state.error} 
+            containerStyle={[
+              styles.errorStyle, 
+              {opacity: state.componentAnimations}
+            ]}
+          />
         );
       return (
         <Animated.View style={[
