@@ -32,19 +32,25 @@ Must-Watch is a work in progress. Features/fixes to come.
 ### Install Expo CLI
 
 ```bash
-npm install -g expo-cli
+yarn install -g expo-cli
 ```
 
 ### Install Dependencies
 
 ```bash
-npm install
+yarn install
 ```
+
+### API Key & Environmental Variables
+
+An API key can be generated from [omdb](http://www.omdbapi.com/apikey.aspx).
+
+Follow instructions in the `.env.example` file.
 
 ### Run
 
 ```bash
-npm start
+yarn start
 ```
 
 Expo Dev Tools will automatically launch in your browser.
