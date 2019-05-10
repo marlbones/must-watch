@@ -8,6 +8,8 @@ import ListScreen from '../screens/ListScreen';
 import MovieScreen from '../screens/MovieScreen';
 import AboutScreen from '../screens/AboutScreen';
 
+import Colors from "../constants/Colors";
+
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
@@ -89,8 +91,16 @@ AboutStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
-  HomeStack,
-  ListStack,
-  AboutStack,
-});
+export default createBottomTabNavigator(
+  {
+    HomeStack,
+    ListStack,
+    AboutStack,
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: Colors.tabIconSelected,
+      inactiveTintColor: Colors.tabIconDefault,
+    },
+  }
+);

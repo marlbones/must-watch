@@ -115,7 +115,7 @@ const MovieFull = ({
               title={"Remove from list"}
               type="outline"
               titleStyle={styles.buttonTextStyle}
-              buttonStyle={styles.buttonStyle}
+              buttonStyle={styles.removeButtonStyle}
               onPress={() =>
               Alert.alert(
                   "Are you sure?",
@@ -265,19 +265,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonTextStyle: {
-    color: Colors.blackText,
+    color: Colors.white,
     fontSize: 12,
   },
   buttonStyle: {
-    borderColor: Colors.blackText,
+    borderColor: Colors.tintColor,
+    backgroundColor: Colors.tintColor,
     borderRadius: 6,
     margin: 12,
   },
   disabledButtonStyle: {
-    borderColor: Colors.greyText
+    borderColor: Colors.greyText,
+    backgroundColor: Colors.white,
   },
   disabledButtonText: {
     color: Colors.greyText
+  },
+  removeButtonStyle: {
+    borderColor: Colors.greyText,
+    backgroundColor: Colors.greyText,
+    borderRadius: 6,
+    margin: 12,
   },
   bottomInfo: {
     paddingVertical: 16,
