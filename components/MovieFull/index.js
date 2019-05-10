@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import { Icon } from 'expo';
 
 import Colors from '../../constants/Colors';
+import LoadingImage from '../LoadingImage';
 import MovieFullContainer from '../../containers/MovieFullContainer';
 
 const MovieFull = ({
@@ -38,7 +39,7 @@ const MovieFull = ({
                 <Text style={styles.noImageText}>n/a</Text>
               </View>
             ) : (
-              <Image
+              <LoadingImage
                 style={styles.image}
                 source={{uri: `${movie.Poster}`}}   
               />

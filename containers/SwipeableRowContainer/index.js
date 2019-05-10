@@ -8,10 +8,17 @@ import {
 
 import { deviceMovies } from '../../data/redux/actions/device';
 
+import remove from 'lodash/remove';
+
 const handlers = {
   onAddToList: ({device, dispatch, movie}) => () => {
     const currentMovies = device.movies;
     currentMovies.push(movie);
+    dispatch(deviceMovies(currentMovies));
+  },
+  onRemoveFromList: ({device, dispatch, movie}) => () => {
+    let currentMovies = device.movies;
+    remove(currentMovies, movie);
     dispatch(deviceMovies(currentMovies));
   },
 };

@@ -8,7 +8,14 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import SwipeableRowContainer from '../../containers/SwipeableRowContainer';
 
-const SwipeableRow = ({ children, canSwipe, onAddToList, updateRef, swipeRef }) => {
+const SwipeableRow = ({
+    children,
+    canSwipe,
+    onAddToList,
+    onRemoveFromList,
+    updateRef,
+    swipeRef
+  }) => {
 
   const onRenderLeftActions = (progress) => {
     const shift = progress.interpolate({
@@ -22,21 +29,33 @@ const SwipeableRow = ({ children, canSwipe, onAddToList, updateRef, swipeRef }) 
           {transform: 
             [{
               translateX: shift
-            }]
+            }],
+          backgroundColor: canSwipe ? Colors.tintColor : Colors.errorText
           }
         ]}
       >
         <TouchableOpacity 
           onPress={() => {
-            onAddToList();
             swipeRef.close();
+            canSwipe ? onAddToList() : onRemoveFromList();
           }}
         >
-          <Icon.FontAwesome 
-            name={'plus-circle'} 
-            size={24} 
-            style={styles.icon}
-          />
+        {
+          canSwipe ? (
+            <Icon.FontAwesome 
+              name={'plus-circle'} 
+              size={24} 
+              style={styles.icon}
+            />
+          ) : (
+            <Icon.FontAwesome 
+              name={'minus-circle'} 
+              size={24} 
+              style={styles.icon}
+            />
+          )
+        }
+
         </TouchableOpacity>
       </Animated.View>
     )
@@ -44,7 +63,7 @@ const SwipeableRow = ({ children, canSwipe, onAddToList, updateRef, swipeRef }) 
   return (
     <Swipeable
       ref={updateRef} 
-      renderLeftActions={canSwipe ? onRenderLeftActions : null}
+      renderLeftActions={onRenderLeftActions}
       friction={2}
       leftThreshold={40}
     >
@@ -56,7 +75,7 @@ const SwipeableRow = ({ children, canSwipe, onAddToList, updateRef, swipeRef }) 
 const styles = StyleSheet.create({
   container: {
     width: 100,
-    backgroundColor: Colors.tintColor,
+    // backgroundColor: Colors.tintColor,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomColor: Colors.border,

@@ -12,6 +12,7 @@ const ListScreen = ({ device, navigation }) => (
       data={device.movies}
       extraData={device.movies}
       keyExtractor={item => `${item.imdbID}`}
+      onEndReachedThreshold={30}
       renderItem={({ item }) => <MoviePreview movie={item} navigation={navigation} />}
       ListEmptyComponent={
         <EmptyListMessage 

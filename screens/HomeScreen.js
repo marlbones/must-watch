@@ -61,7 +61,11 @@ const HomeScreen = ({
       />
     </Animated.View>
     {(() => {
-      if (state.loading) return <Loading flex={1} />;
+      if (state.loading) return (
+        <Animated.View style={{opacity: state.componentAnimations, flex: 1}}>
+          <Loading flex={1} />
+        </Animated.View>
+      );
       if (state.error)
         return (
           <ErrorMessage text={state.error} containerStyle={styles.errorStyle} />
