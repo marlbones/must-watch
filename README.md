@@ -1,8 +1,16 @@
+<p align="center">
+  <a href="https://expo.io/@robhung/scb-social-networking-app">
+    <img src="./assets/images/mustwatchlogo.png" alt="SCB Book" height="128" width="128" />
+  </a>
+</p>
+
 # Must-Watch
 
 ## Description
 
 Simple app for creating a visual list of movies you want to/must watch. Search a movie then add it to your list.
+
+Using ([omdb api](https://itunes.apple.com/app/apple-store/id982107779).
 
 Must-Watch is a work in progress. Features/fixes to come.
 
@@ -19,6 +27,7 @@ Must-Watch is a work in progress. Features/fixes to come.
 - Add/remove movies to a "watch list".
 - List data saved locally via redux-persist.
 - Swipe right on searched list to for quick add.
+- Swipe right on added item for quick remove.
 
 ## Planned Future Features
 
@@ -29,17 +38,13 @@ Must-Watch is a work in progress. Features/fixes to come.
 ## To Do
 
 - Publish to expo.
-- Add swipe right to remove from watch list.
 - MoveFull component too big. Break it down.
 - General styling update.
-- Add Icons, splash screen.
-- Think about how to make it that you can view your saved list offline. Logic that saves full screen data into state/watch list?
+- View your saved list offline. Logic that saves full screen data into state/watch list?
 - General code and file structure cleanup.
 - Update readme.
 
 ## Known Bugs to Squash
 
 - Continuing to drag list item after right swipe reveals white colour. Maybe change FlatList background colour to blue?
-- Weird movies that appear have broken full screen view. Could be because desciption is missing?
-- After adding a movie from swipe, user can continue to swipe. Gross.
-- List shows games sometimes? Remove this.
+- Certain weird movies make full-screen movie UI look weird.
