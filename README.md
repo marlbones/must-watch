@@ -1,7 +1,5 @@
 <p align="left">
-  <a href="https://expo.io/@robhung/scb-social-networking-app">
-    <img src="./assets/images/mustwatchlogo.png" alt="SCB Book" height="128" width="128" />
-  </a>
+  <img src="./assets/images/mustwatchlogo.png" alt="mustwatch" height="128" width="128" />
 </p>
 
 # Must-Watch
