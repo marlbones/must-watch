@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Must Watch",
-    "slug": "mustwatch",
+    "name": "Must-Watch",
+    "slug": "must-watch",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "A simple app for creating a visual list of movies/shows you want to watch. Search a movie then add it to your list.",
+    "githubUrl": "https://github.com/marlbones/must-watch"
   }
 }
