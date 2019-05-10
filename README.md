@@ -6,7 +6,7 @@
 
 ## Description
 
-Simple app for creating a visual list of movies you want to/must watch. Search a movie then add it to your list.
+Simple app for creating a visual list of movies you must watch. Search a movie then add it to your list.
 
 Using [omdb api](https://itunes.apple.com/app/apple-store/id982107779).
 
