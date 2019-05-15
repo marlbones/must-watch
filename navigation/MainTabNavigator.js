@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import ListScreen from '../screens/ListScreen';
 import MovieScreen from '../screens/MovieScreen';
+import SeenScreen from '../screens/SeenScreen';
 import AboutScreen from '../screens/AboutScreen';
 
 import Colors from "../constants/Colors";
@@ -72,6 +73,25 @@ ListStack.navigationOptions = ({navigation}) => {
   }
 };
 
+const SeenStack = createStackNavigator({
+  About: {
+    screen: SeenScreen,
+    navigationOptions: {
+      title: "Seen List"
+    }
+  },
+});
+
+SeenStack.navigationOptions = {
+  tabBarLabel: 'Seen List',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-star' : 'md-star'}
+    />
+  ),
+};
+
 const AboutStack = createStackNavigator({
   About: {
     screen: AboutScreen,
@@ -95,6 +115,7 @@ export default createBottomTabNavigator(
   {
     HomeStack,
     ListStack,
+    SeenStack,
     AboutStack,
   },
   {
