@@ -1,15 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Platform, Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
-
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import Colors from '../../constants/Colors';
 import LoadingImage from '../LoadingImage';
 import SwipeableRow from '../SwipeableRow';
 import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 
-const MoviePreview = ({ movie, onPress, inWatchList, searchScreenPreview }) => {
+const MoviePreview = ({ movie, onPress, inWatchList, inSeenList, searchScreenPreview }) => {
   return (
     <SwipeableRow 
       canSwipe={(searchScreenPreview && !inWatchList)}
@@ -50,7 +48,17 @@ const MoviePreview = ({ movie, onPress, inWatchList, searchScreenPreview }) => {
               (searchScreenPreview && inWatchList) && (
                 <Icon.Ionicons
                   style={styles.typeIcon}
-                  name = {'md-checkmark-circle'}
+                  name = {Platform.OS === 'ios' ? 'ios-list' : 'md-list'}
+                  size={16}
+                  color={Colors.greyText}
+                />
+              )
+            }
+            {
+              (searchScreenPreview && inSeenList) && (
+                <Icon.Ionicons
+                  style={styles.typeIcon}
+                  name = {Platform.OS === 'ios' ? 'ios-checkmark-circle' : 'md-checkmark-circle'}
                   size={16}
                   color={Colors.greyText}
                 />

@@ -12,7 +12,9 @@ const MovieFull = ({
     displayAddButton,
     onAddToList,
     inWatchList,
+    inSeenList,
     onRemoveFromList,
+    onAddToSeen,
     componentAnimations
 }) => (
     <ScrollView
@@ -101,37 +103,62 @@ const MovieFull = ({
           </View>
           {displayAddButton ? (
             <Button 
-              title={inWatchList ? "Movie Added" : "Add to List"}
+              title={inWatchList ? "Movie Added" : (inSeenList ? "Movie Watched" : "Add to List")}
               type="outline"
               titleStyle={styles.buttonTextStyle}
               buttonStyle={styles.buttonStyle}
               disabledStyle={styles.disabledButtonStyle}
               disabledTitleStyle={styles.disabledButtonText}
               onPress={onAddToList}
-              disabled={inWatchList}
+              disabled={inWatchList || inSeenList}
             />
           ) : (
-            <Button 
-              title={"Remove from list"}
-              type="outline"
-              titleStyle={styles.buttonTextStyle}
-              buttonStyle={styles.removeButtonStyle}
-              onPress={() =>
-              Alert.alert(
-                  "Are you sure?",
-                  undefined,
-                  [
-                  {
-                      text: 'Remove',
-                      style: 'cancel',
-                      onPress: () => onRemoveFromList()
-                  },
-                  {
-                      text: 'Cancel',
-                  },
-                  ]
-              )}
-            />
+            <View style={styles.buttonContainer}>
+              <Button 
+                title={"Watched"}
+                type="outline"
+                titleStyle={styles.buttonTextStyle}
+                buttonStyle={styles.seenButtonStyle}
+                onPress={() =>
+                Alert.alert(
+                    "Mark as Watched?",
+                    undefined,
+                    [
+                    {
+                        text: 'Watched',
+                        onPress: () => {
+                          onAddToSeen();
+                          onRemoveFromList();
+                        }
+                    },
+                    {
+                        text: 'Cancel',
+                    },
+                    ]
+                )}
+              />
+              <Button 
+                title={"Remove from List"}
+                type="outline"
+                titleStyle={styles.buttonTextStyle}
+                buttonStyle={styles.removeButtonStyle}
+                onPress={() =>
+                Alert.alert(
+                    "Remove from List?",
+                    undefined,
+                    [
+                    {
+                        text: 'Remove',
+                        style: 'cancel',
+                        onPress: () => onRemoveFromList()
+                    },
+                    {
+                        text: 'Cancel',
+                    },
+                    ]
+                )}
+              />
+            </View>
           )}
         </Animated.View>
       </View>
@@ -281,11 +308,21 @@ const styles = StyleSheet.create({
   disabledButtonText: {
     color: Colors.greyText
   },
+  buttonContainer: {
+    marginVertical: 12,
+  },
+  seenButtonStyle: {
+    borderColor: Colors.tintColor,
+    backgroundColor: Colors.tintColor,
+    borderRadius: 6,
+    marginHorizontal: 12,
+  },
   removeButtonStyle: {
     borderColor: Colors.greyText,
     backgroundColor: Colors.greyText,
     borderRadius: 6,
-    margin: 12,
+    marginHorizontal: 12,
+    marginTop: 6,
   },
   bottomInfo: {
     paddingVertical: 16,

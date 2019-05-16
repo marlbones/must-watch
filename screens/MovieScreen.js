@@ -11,7 +11,9 @@ const MovieScreen = ({
     displayAddButton,
     onAddToList,
     inWatchList,
+    inSeenList,
     onRemoveFromList,
+    onAddToSeen,
 }) => (
   <View style={styles.container}>
     {(() => {
@@ -26,7 +28,9 @@ const MovieScreen = ({
           displayAddButton={displayAddButton}
           onAddToList={() => onAddToList()}
           onRemoveFromList={() => onRemoveFromList()}
+          onAddToSeen={() => onAddToSeen()}
           inWatchList={inWatchList}
+          inSeenList={inSeenList}
         />
       ); 
     })()}

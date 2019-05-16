@@ -1,44 +1,42 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 
-import Colors from '../constants/Colors';
+import SeenListItem from '../components/SeenListItem';
+import EmptyListMessage from '../components/EmptyListMessage';
+import SeenScreenContainer from '../containers/SeenScreenContainer';
 
-const SeenScreen = () => (
+const SeenScreen = ({ device }) => (
   <View style={styles.container}>
-    <View style={styles.textView}>
-      <Text style={styles.text}>
-        SeenScreen
-      </Text>
-    </View>
+    <FlatList
+      style={styles.listContainer}
+      data={device.watchedMovies}
+      extraData={device.watchedMovies}
+      keyExtractor={item => `${item.imdbID}`}
+      onEndReachedThreshold={30}
+      renderItem={({ item }) => <SeenListItem movie={item} />}
+      ListEmptyComponent={
+        <EmptyListMessage 
+          text={"Currently no items in Watch List"} 
+          containerStyle={styles.emptyStyle} 
+        />
+      }
+      scrollEnabled={device.watchedMovies.length > 0}
+    />
   </View>
 );
 
 const styles = StyleSheet.create({
-  actionText: {
-    color: 'black',
-    fontSize: 16,
-    backgroundColor: 'red',
-    paddingLeft: 30,
-  },
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingHorizontal: 16,
   },
-  imageContainer: {
-    paddingTop: 40,
+  emptyStyle: {
+    paddingTop: 24,
   },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  textView: {
-    paddingTop: 16,
-  },
-  text: {
-    color: Colors.blackText,
-    paddingTop: 8,
+  listContainer: {
+    flex: 1,
+    width: '100%',
   },
 });
 
-export default SeenScreen;
+export default SeenScreenContainer(SeenScreen);

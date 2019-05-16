@@ -74,7 +74,7 @@ The project has been published and is hosted on [Expo](https://expo.io/@marlbone
 ## To Do
 
 - Publish to expo.
-- MoveFull component too big. Break it down.
+- MoveFull component too big. Break it down. Move logic from Screen to component.
 - General styling update.
 - View your saved list offline. Logic that saves full screen data into state/watch list?
 - General code and file structure cleanup.

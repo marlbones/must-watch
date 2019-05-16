@@ -12,7 +12,7 @@ import {
   API_URL
 } from 'react-native-dotenv';
 
-import { deviceMovies } from '../../data/redux/actions/device';
+import { deviceMovies, deviceWatchedMovies } from '../../data/redux/actions/device';
 import some from 'lodash/some';
 import remove from 'lodash/remove';
 
@@ -57,13 +57,19 @@ const handlers = {
     dispatch(deviceMovies(currentMovies));
     navigation.goBack(null);
   },
+  onAddToSeen: ({device, dispatch}) => () => {
+    const currentMovies = device.watchedMovies;
+    currentMovies.push(device.selectedMovie);
+    dispatch(deviceWatchedMovies(currentMovies));
+  },
 };
 
 const MovieScreenContainer = compose(
   connect(({ device }) => ({ 
     device,
     // Check if movie is already saved in watched list
-    inWatchList: some(device.movies, {imdbID: device.selectedMovie.imdbID})
+    inWatchList: some(device.movies, {imdbID: device.selectedMovie.imdbID}),
+    inSeenList: some(device.watchedMovies, {imdbID: device.selectedMovie.imdbID})
   })),
   withState("state", "updateState", initialState),
   withHandlers(handlers),
