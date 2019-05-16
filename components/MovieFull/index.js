@@ -115,13 +115,13 @@ const MovieFull = ({
           ) : (
             <View style={styles.buttonContainer}>
               <Button 
-                title={"Watched"}
+                title={"Watched it"}
                 type="outline"
                 titleStyle={styles.buttonTextStyle}
                 buttonStyle={styles.seenButtonStyle}
                 onPress={() =>
                 Alert.alert(
-                    "Mark as Watched?",
+                    `Mark as "Watched"?`,
                     undefined,
                     [
                     {

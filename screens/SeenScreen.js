@@ -16,7 +16,7 @@ const SeenScreen = ({ device }) => (
       renderItem={({ item }) => <SeenListItem movie={item} />}
       ListEmptyComponent={
         <EmptyListMessage 
-          text={"Currently no items in Watch List"} 
+          text={"Currently no items in Seen List"} 
           containerStyle={styles.emptyStyle} 
         />
       }

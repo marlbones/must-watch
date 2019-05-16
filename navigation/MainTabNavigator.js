@@ -77,13 +77,13 @@ const SeenStack = createStackNavigator({
   About: {
     screen: SeenScreen,
     navigationOptions: {
-      title: "Seen List"
+      title: "Watched List"
     }
   },
 });
 
 SeenStack.navigationOptions = {
-  tabBarLabel: 'Seen List',
+  tabBarLabel: 'Watched',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

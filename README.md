@@ -78,7 +78,7 @@ The project has been published and is hosted on [Expo](https://expo.io/@marlbone
 - General styling update.
 - View your saved list offline. Logic that saves full screen data into state/watch list?
 - General code and file structure cleanup.
-- Update readme.
+- Change "Seen" naming convention to "Watched".
 
 ## Known Bugs to Squash
 
