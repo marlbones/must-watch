@@ -23,6 +23,7 @@ Must-Watch is a work in progress. Features/fixes to come.
 
 - Search omdbapi (unofficial imdb) database for movies or tv shows.
 - Add/remove movies to a "watch list".
+- Mark movies as "watched".
 - List data saved locally via redux-persist.
 - Swipe right on searched list to for quick add.
 - Swipe right on added item for quick remove.
@@ -67,7 +68,8 @@ The project has been published and is hosted on [Expo](https://expo.io/@marlbone
 
 ## Planned Future Features
 
-- Mark items as "Watched".
+- Unmark items as "Watched".
+- Quick mark items as "Watched" using gestures.
 - Games List
 - Books List
 
