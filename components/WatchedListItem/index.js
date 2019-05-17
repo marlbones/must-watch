@@ -13,9 +13,9 @@ const WatchedListItem = ({ movie }) => {
           <Text style={styles.text}>
             {movie.Title}
           </Text>
-        <Text style={styles.subText}>
-          {movie.Year}
-        </Text>
+          <Text style={styles.subText}>
+            {movie.Year}
+          </Text>
         </View>
         <View style={styles.textBlock}>
           <Text style={styles.dateText}>

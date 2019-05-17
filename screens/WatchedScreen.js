@@ -1,18 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 
 import WatchedListItem from '../components/WatchedListItem';
 import EmptyListMessage from '../components/EmptyListMessage';
 import WatchedScreenContainer from '../containers/WatchedScreenContainer';
 
-import { deviceWatchedMovies } from '../data/redux/actions/device';
-
-const WatchedScreen = ({ device, dispatch }) => (
+const WatchedScreen = ({ device }) => (
   <View style={styles.container}>
-    <Text onPress={() => {
-      dispatch(deviceWatchedMovies([]));
-      console.log(device.watchedMovies)
-    }}>hi</Text>
     <FlatList
       style={styles.listContainer}
       data={device.watchedMovies}
