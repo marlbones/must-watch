@@ -1,22 +1,28 @@
 import React from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Text } from 'react-native';
 
-import SeenListItem from '../components/SeenListItem';
+import WatchedListItem from '../components/WatchedListItem';
 import EmptyListMessage from '../components/EmptyListMessage';
-import SeenScreenContainer from '../containers/SeenScreenContainer';
+import WatchedScreenContainer from '../containers/WatchedScreenContainer';
 
-const SeenScreen = ({ device }) => (
+import { deviceWatchedMovies } from '../data/redux/actions/device';
+
+const WatchedScreen = ({ device, dispatch }) => (
   <View style={styles.container}>
+    <Text onPress={() => {
+      dispatch(deviceWatchedMovies([]));
+      console.log(device.watchedMovies)
+    }}>hi</Text>
     <FlatList
       style={styles.listContainer}
       data={device.watchedMovies}
       extraData={device.watchedMovies}
       keyExtractor={item => `${item.imdbID}`}
       onEndReachedThreshold={30}
-      renderItem={({ item }) => <SeenListItem movie={item} />}
+      renderItem={({ item }) => <WatchedListItem movie={item} />}
       ListEmptyComponent={
         <EmptyListMessage 
-          text={"Currently no have been watched"} 
+          text={"Currently no movies have been watched"} 
           containerStyle={styles.emptyStyle} 
         />
       }
@@ -39,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SeenScreenContainer(SeenScreen);
+export default WatchedScreenContainer(WatchedScreen);

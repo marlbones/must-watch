@@ -6,7 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import ListScreen from '../screens/ListScreen';
 import MovieScreen from '../screens/MovieScreen';
-import SeenScreen from '../screens/SeenScreen';
+import WatchedScreen from '../screens/WatchedScreen';
 import AboutScreen from '../screens/AboutScreen';
 
 import Colors from "../constants/Colors";
@@ -75,7 +75,7 @@ ListStack.navigationOptions = ({navigation}) => {
 
 const SeenStack = createStackNavigator({
   About: {
-    screen: SeenScreen,
+    screen: WatchedScreen,
     navigationOptions: {
       title: "Watched List"
     }

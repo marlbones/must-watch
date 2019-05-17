@@ -4,8 +4,8 @@ import {
   compose,
 } from "recompose";
 
-const SeenScreenContainer = compose(
+const WatchedScreenContainer = compose(
   connect(({ device }) => ({ device })),
 );
 
-export default SeenScreenContainer;
+export default WatchedScreenContainer;

@@ -12,7 +12,9 @@ import {
   API_URL
 } from 'react-native-dotenv';
 
+
 import { deviceMovies, deviceWatchedMovies } from '../../data/redux/actions/device';
+
 import some from 'lodash/some';
 import remove from 'lodash/remove';
 
@@ -59,7 +61,7 @@ const handlers = {
   },
   onAddToSeen: ({device, dispatch}) => () => {
     const currentMovies = device.watchedMovies;
-    currentMovies.push(device.selectedMovie);
+    currentMovies.push({...device.selectedMovie, dateWatched: new Date()});
     dispatch(deviceWatchedMovies(currentMovies));
   },
 };
