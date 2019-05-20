@@ -75,7 +75,7 @@ const MoviePreview = ({ movie, onPress, inWatchList, inSeenList, searchScreenPre
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    padding: 24,
+    padding: 12,
     borderBottomColor: Colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   text: {
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.blackText,
   },
   subText: {
