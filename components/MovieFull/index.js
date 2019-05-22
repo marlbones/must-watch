@@ -9,7 +9,7 @@ import MovieFullContainer from '../../containers/MovieFullContainer';
 
 const MovieFull = ({
     movie,
-    displayAddButton,
+    searchOrWatched,
     onAddToList,
     inWatchList,
     inSeenList,
@@ -101,7 +101,7 @@ const MovieFull = ({
               </View>
             )}
           </View>
-          {displayAddButton ? (
+          {searchOrWatched ? (
             <Button 
               title={inWatchList ? "Movie Added" : (inSeenList ? "Movie Watched" : "Add to List")}
               type="outline"

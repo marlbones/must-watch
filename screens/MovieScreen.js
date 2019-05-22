@@ -8,7 +8,7 @@ import MovieScreenContainer from '../containers/MovieScreenContainer';
 
 const MovieScreen = ({
     state,
-    displayAddButton,
+    searchOrWatched,
     onAddToList,
     inWatchList,
     inSeenList,
@@ -25,7 +25,7 @@ const MovieScreen = ({
       return (
         <MovieFull
           movie={state.movie}
-          displayAddButton={displayAddButton}
+          searchOrWatched={searchOrWatched}
           onAddToList={() => onAddToList()}
           onRemoveFromList={() => onRemoveFromList()}
           onAddToSeen={() => onAddToSeen()}

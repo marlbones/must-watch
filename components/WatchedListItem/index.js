@@ -1,13 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import Moment from 'moment';
 
+import WatchedListItemContainer from '../../containers/WatchedListItemContainer';
 import Colors from '../../constants/Colors';
 
-const WatchedListItem = ({ movie }) => {
+const WatchedListItem = ({ movie, onPress }) => {
   return (
-    <View style={styles.wrapper}>
+    <TouchableOpacity 
+      style={styles.wrapper}
+      onPress={() => onPress()}
+      delayPressIn={50}
+    >
       <View style={styles.textWrapper}>
         <View style={styles.textBlock}>
           <Text style={styles.text}>
@@ -26,7 +31,7 @@ const WatchedListItem = ({ movie }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -79,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WatchedListItem;
+export default WatchedListItemContainer(WatchedListItem);

@@ -18,7 +18,7 @@ const HomeStack = createStackNavigator({
     }
   },
   Movie: {
-    screen: () => <MovieScreen displayAddButton />,
+    screen: () => <MovieScreen searchOrWatched />,
   }
 });
 
@@ -73,23 +73,33 @@ ListStack.navigationOptions = ({navigation}) => {
   }
 };
 
-const SeenStack = createStackNavigator({
-  About: {
+const WatchedStack = createStackNavigator({
+  Watched: {
     screen: WatchedScreen,
     navigationOptions: {
       title: "Watched List"
     }
   },
+  Movie: {
+    screen: () => <MovieScreen searchOrWatched />,
+  }
 });
 
-SeenStack.navigationOptions = {
-  tabBarLabel: 'Watched',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-checkmark-circle' : 'md-checkmark-circle'}
-    />
-  ),
+WatchedStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+    tabBarLabel: 'Watched',
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={Platform.OS === 'ios' ? 'ios-checkmark-circle' : 'md-checkmark-circle'}
+      />
+    ),
+  }
 };
 
 const AboutStack = createStackNavigator({
@@ -115,7 +125,7 @@ export default createBottomTabNavigator(
   {
     HomeStack,
     ListStack,
-    SeenStack,
+    WatchedStack,
     AboutStack,
   },
   {

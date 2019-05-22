@@ -5,7 +5,7 @@ import WatchedListItem from '../components/WatchedListItem';
 import EmptyListMessage from '../components/EmptyListMessage';
 import WatchedScreenContainer from '../containers/WatchedScreenContainer';
 
-const WatchedScreen = ({ device }) => (
+const WatchedScreen = ({ device, navigation }) => (
   <View style={styles.container}>
     <FlatList
       style={styles.listContainer}
@@ -13,7 +13,7 @@ const WatchedScreen = ({ device }) => (
       extraData={device.watchedMovies}
       keyExtractor={item => `${item.imdbID}`}
       onEndReachedThreshold={30}
-      renderItem={({ item }) => <WatchedListItem movie={item} />}
+      renderItem={({ item }) => <WatchedListItem movie={item} navigation={navigation} />}
       ListEmptyComponent={
         <EmptyListMessage 
           text={"Currently no movies have been watched"} 
