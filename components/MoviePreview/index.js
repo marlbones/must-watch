@@ -10,8 +10,9 @@ import MoviePreviewContainer from '../../containers/MoviePreviewContainer';
 const MoviePreview = ({ movie, onPress, inWatchList, inSeenList, searchScreenPreview }) => {
   return (
     <SwipeableRow 
-      canSwipe={(searchScreenPreview && !inWatchList)}
+      inHomeAndNotListed={(searchScreenPreview && !inWatchList)} // Checking if item is both on search screen and not in Must Watch List
       movie={movie}
+      inSeenList={inSeenList}
     >
       <TouchableOpacity 
         style={styles.wrapper} 

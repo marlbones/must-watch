@@ -10,11 +10,12 @@ import SwipeableRowContainer from '../../containers/SwipeableRowContainer';
 
 const SwipeableRow = ({
     children,
-    canSwipe,
+    inHomeAndNotListed,
     onAddToList,
     onRemoveFromList,
     updateRef,
-    swipeRef
+    swipeRef,
+    inSeenList
   }) => {
 
   const onRenderLeftActions = (progress) => {
@@ -30,18 +31,18 @@ const SwipeableRow = ({
             [{
               translateX: shift
             }],
-          backgroundColor: canSwipe ? Colors.tintColor : Colors.errorText
+          backgroundColor: inHomeAndNotListed ? Colors.tintColor : Colors.errorText
           }
         ]}
       >
         <TouchableOpacity 
           onPress={() => {
             swipeRef.close();
-            canSwipe ? onAddToList() : onRemoveFromList();
+            inHomeAndNotListed ? onAddToList() : onRemoveFromList();
           }}
         >
         {
-          canSwipe ? (
+          inHomeAndNotListed ? (
             <Icon.FontAwesome 
               name={'plus-circle'} 
               size={24} 
@@ -63,7 +64,7 @@ const SwipeableRow = ({
   return (
     <Swipeable
       ref={updateRef} 
-      renderLeftActions={onRenderLeftActions}
+      renderLeftActions={!inSeenList ? onRenderLeftActions : null}
       friction={2}
       leftThreshold={40}
     >
